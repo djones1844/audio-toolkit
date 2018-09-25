@@ -1,7 +1,7 @@
-var  AudioToolkit = require("../audio-toolkit.js")
-var   aud = new AudioToolkit
-var  chai = require("chai");
-     chai.use(require("chai-as-promised")); // for use with promises
+const  AudioToolkit = require("../audio-toolkit.js")
+const   aud = new AudioToolkit
+const  chai = require("chai")
+chai.use(require("chai-as-promised")) // for use with promises
 const md5File = require('md5-file/promise')
 const TESTFILES = __dirname +"/testfiles/"
 
@@ -19,7 +19,7 @@ function compareFiles(file1, file2) {
 describe("Audio Toolkit tests", function() {
   this.timeout(15000)
 
-  it("Let me convert a file from .mp3 to .flac", function() {
+  it("Let me convert a file from .mp3 to .flac", () => {
     let srcFiles = [ TESTFILES + "1-test-convert-from.mp3" ]
     let compareFile = TESTFILES + "1-test-convert-to.flac"
     let testCompare = aud.convertFormat(srcFiles, 'flac').then((outputFiles) => {
@@ -28,7 +28,7 @@ describe("Audio Toolkit tests", function() {
     return chai.expect(testCompare).to.eventually.equal(true)
   })
 
-  it("Let me merge some files together ", function() {
+  it("Let me merge some files together ", () => {
     let srcFiles = [ TESTFILES + "2-test-merge-from-1.flac",  TESTFILES + "2-test-merge-from-2.flac" ]
     let compareFile = TESTFILES + "2-test-merge-to.flac"
     let testCompare = aud.mergeFiles(srcFiles).then((outputFile) => {
@@ -37,7 +37,7 @@ describe("Audio Toolkit tests", function() {
     return chai.expect(testCompare).to.eventually.equal(true)
   })
 
-  it("Let me split a file ", function() {
+  it("Let me split a file ", () => {
     let srcFile = TESTFILES + "3-test-split-from.flac"
     let compareWith = [TESTFILES + "3-test-split-to1.flac", TESTFILES + "3-test-split-to2.flac"]
     let testCompare = aud.splitFile(srcFile, 5000).then((outputFiles) => {
@@ -47,7 +47,7 @@ describe("Audio Toolkit tests", function() {
     return chai.expect(testCompare).to.eventually.equal(true)
   })
 
-  it("Let me insert a fragment into another file ", function() {
+  it("Let me insert a fragment into another file ", () => {
     let srcFile = TESTFILES + "4-test-insert-from.flac"
     let fragmentFile = TESTFILES + "4-test-insert-fromfrag.flac"
     let compareWith = TESTFILES + "4-test-insert-to.flac"
@@ -57,7 +57,7 @@ describe("Audio Toolkit tests", function() {
     return chai.expect(testCompare).to.eventually.equal(true)
   })
 
-  it("Let me delete a section of a file ", function() {
+  it("Let me delete a section of a file ", () => {
     let srcFile = TESTFILES + "5-test-delete-from.flac"
     let compareWith = TESTFILES + "5-test-delete-to.flac"
     let testCompare = aud.deleteSection(srcFile, 3000, 5000).then((outputFile) => {
@@ -66,7 +66,7 @@ describe("Audio Toolkit tests", function() {
     return chai.expect(testCompare).to.eventually.equal(true)
   })
 
-  it("Let me replace a section of a file ", function() {
+  it("Let me replace a section of a file ", () => {
     let srcFile = TESTFILES + "6-test-replace-from.flac"
     let fragmentFile = TESTFILES + "6-test-replace-fromfrag.flac"
     let compareWith = TESTFILES + "6-test-replace-to.flac"
@@ -76,7 +76,7 @@ describe("Audio Toolkit tests", function() {
     return chai.expect(testCompare).to.eventually.equal(true)
   })
 
-  it("Let me read metadata from a file ", function() {
+  it("Let me read metadata from a file ", () => {
     let srcFile = TESTFILES + "7-test-getmetadata.flac"
     let testCompare = aud.getMetaData(srcFile).then((meta) => {
       return (meta.duration === '00:01:04.05'
@@ -87,7 +87,7 @@ describe("Audio Toolkit tests", function() {
     return chai.expect(testCompare).to.eventually.equal(true)
   })
 
-  it("Let me normalize levels of a file ", function() {
+  it("Let me normalize levels of a file ", () => {
     let srcFile = TESTFILES + "8-test-normalizeLevels-from.flac"
     let compareWith = TESTFILES + "8-test-normalizeLevels-to.flac"
     let testCompare = aud.normalizeLevels(srcFile).then((outputFile) => {
@@ -96,7 +96,7 @@ describe("Audio Toolkit tests", function() {
     return chai.expect(testCompare).to.eventually.equal(true)
   })
 
-  it("Let me normalize silence inside a file ", function() {
+  it("Let me normalize silence inside a file ", () => {
     let srcFile = TESTFILES + "9-test-normalizesilence-from.flac"
     let compareWith = TESTFILES + "9-test-normalizesilence-to.flac"
     let testCompare = aud.normalizeLevels(srcFile).then((outputFile) => {
@@ -105,7 +105,7 @@ describe("Audio Toolkit tests", function() {
     return chai.expect(testCompare).to.eventually.equal(true)
   })
   
-  it("Let me find silent places", function() {
+  it("Let me find silent places", () => {
     let source = TESTFILES + "detect-silence.flac"
     let silence = aud.detectSilence(source, '-50dB', 1)
     let testCompare = silence.then((response) => {
