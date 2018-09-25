@@ -11,7 +11,7 @@
     "postinstall": "docker build -t dockerffmpeg ."
   },
   "dependencies": {
-    "chokidar": "^1.7.0",
+    "chokidar": "^2.0.4",
     "directory-exists": "^1.0.2",
     "file-exists": "^4.0.0",
     "fs-extra": "^3.0.1",
@@ -25,7 +25,7 @@
     "chai-as-promised": "^6.0.0",
     "chai-fs": "^1.0.0",
     "md5-file": "^3.1.1",
-    "mocha": "^3.2.0"
+    "mocha": "^5.2.0"
   },
   "description": "A set of tools for processing audio files intended for use in audiobooks. Mainly this means a set of wrapper functions around FFMpeg --using an ephemeral docker container.",
   "bugs": {
@@ -40,6 +40,6 @@
     "ffmpeg",
     "audiobook"
   ],
-  "author": "Chad Jones <djones1844@gmail.com>)",
+  "author": "Daniel Jones <djones1844@gmail.com>)",
   "license": "ISC"
 }
