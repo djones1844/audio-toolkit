@@ -10,8 +10,6 @@ const fileExists = require('file-exists')
 const directoryExists = require('directory-exists')
 const chokidar = require('chokidar')
 
-
-
 class AudioToolkit {
   constructor() {
     // in case we need some instantiated object data
